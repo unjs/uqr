@@ -1,17 +1,17 @@
 {
-  "name": "nqr",
+  "name": "uqr",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "packageManager": "pnpm@8.6.11",
   "description": "Generate QR Code universally, in any runtime, to ANSI, Unicode or SVG.",
   "author": "Anthony Fu <anthonyfu117@hotmail.com>",
   "license": "MIT",
-  "homepage": "https://github.com/unjs/nqr#readme",
+  "homepage": "https://github.com/unjs/uqr#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/unjs/nqr.git"
+    "url": "git+https://github.com/unjs/uqr.git"
   },
-  "bugs": "https://github.com/unjs/nqr/issues",
+  "bugs": "https://github.com/unjs/uqr/issues",
   "keywords": [],
   "sideEffects": false,
   "exports": {

@@ -1,6 +1,6 @@
-# nqr
+# uqr
 
-[![NPM version](https://img.shields.io/npm/v/nqr?color=a1b858&label=)](https://www.npmjs.com/package/nqr)
+[![NPM version](https://img.shields.io/npm/v/uqr?color=a1b858&label=)](https://www.npmjs.com/package/uqr)
 
 Generate QR Code universally, in any runtime, to ANSI, Unicode or SVG.
 
@@ -8,13 +8,13 @@ Generate QR Code universally, in any runtime, to ANSI, Unicode or SVG.
 
 ```bash
 # Using npm
-npm install nqr
+npm install uqr
 
 # Using yarn
-yarn add nqr
+yarn add uqr
 
 # Using pnpm
-pnpm add nqr
+pnpm add uqr
 ```
 
 ## Usage
@@ -26,7 +26,7 @@ import {
   renderSVG,
   renderUnicode,
   renderUnicodeCompact,
-} from 'nqr'
+} from 'uqr'
 
 const svg = renderSVG('Hello, World!')
 
@@ -48,7 +48,7 @@ console.log(ansi)
 Encode plain text or binary data into QR Code represented by a 2D array.
 
 ```ts
-import { encode } from 'nqr'
+import { encode } from 'uqr'
 
 const {
   data, // 2D array of boolean, representing the QR Code
@@ -62,7 +62,7 @@ const {
 Render QR Code to [ANSI colored](https://ss64.com/nt/syntax-ansi.html) string.
 
 ```ts
-import { renderANSI } from 'nqr'
+import { renderANSI } from 'uqr'
 
 const string = renderANSI(text, options)
 
@@ -74,7 +74,7 @@ console.log(string)
 Render QR Code to Unicode string for each pixel. By default it uses `█` and `░` to represent black and white pixels, and it can be customizable.
 
 ```ts
-import { renderUnicode } from 'nqr'
+import { renderUnicode } from 'uqr'
 
 const string = renderUnicode(text, {
   blackChar: '█',
@@ -88,7 +88,7 @@ const string = renderUnicode(text, {
 Render QR Code with two rows into one line with unicode `▀`, `▄`, `█`, ` `. It is useful when you want to display QR Code in terminal with limited height.
 
 ```ts
-import { renderUnicodeCompact } from 'nqr'
+import { renderUnicodeCompact } from 'uqr'
 
 const string = renderUnicodeCompact(text, options)
 
@@ -100,7 +100,7 @@ console.log(string)
 Render QR Code to SVG string.
 
 ```ts
-import { renderSVG } from 'nqr'
+import { renderSVG } from 'uqr'
 
 const string = renderSVG(text, options)
 ```
