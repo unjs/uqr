@@ -54,8 +54,6 @@ const ALPHANUMERIC_REGEX = /^[A-Z0-9 $%*+.\/:-]*$/
 // where each character value maps to the index in the string.
 const ALPHANUMERIC_CHARSET = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:'
 
-/* -- Constants and tables -- */
-
 // The minimum version number supported in the QR Code Model 2 standard.
 const MIN_VERSION: int = 1
 // The maximum version number supported in the QR Code Model 2 standard.
@@ -84,8 +82,6 @@ const NUM_ERROR_CORRECTION_BLOCKS: Array<Array<int>> = [
   [-1, 1, 1, 2, 2, 4, 4, 6, 6, 8, 8, 8, 10, 12, 16, 12, 17, 16, 18, 21, 20, 23, 23, 25, 27, 29, 34, 34, 35, 38, 40, 43, 45, 48, 51, 53, 56, 59, 62, 65, 68], // Quartile
   [-1, 1, 1, 2, 4, 4, 4, 5, 6, 8, 8, 11, 11, 16, 16, 18, 16, 19, 21, 25, 25, 25, 34, 30, 32, 35, 37, 40, 42, 45, 48, 51, 54, 57, 60, 63, 66, 70, 74, 77, 81], // High
 ]
-
-/* ---- QR Code symbol class ---- */
 
 /*
   * A QR Code symbol, which is a type of two-dimension barcode.
@@ -132,7 +128,7 @@ export class QrCode {
     // This determines the size of this barcode.
     public readonly version: int,
     // The error correction level used in this QR Code.
-    public readonly errorCorrectionLevel: QrCodeEcc,
+    public readonly ecc: QrCodeEcc,
     dataCodewords: Readonly<Array<byte>>,
     msk: int,
   ) {
@@ -222,7 +218,7 @@ export class QrCode {
   // based on the given mask and this object's error correction level field.
   private drawFormatBits(mask: int): void {
     // Calculate error correction code and pack bits
-    const data: int = this.errorCorrectionLevel[1] << 3 | mask // errCorrLvl is uint2, mask is uint3
+    const data: int = this.ecc[1] << 3 | mask // errCorrLvl is uint2, mask is uint3
     let rem: int = data
     for (let i = 0; i < 10; i++)
       rem = (rem << 1) ^ ((rem >>> 9) * 0x537)
@@ -311,7 +307,7 @@ export class QrCode {
   // codewords appended to it, based on this object's version and error correction level.
   private addEccAndInterleave(data: Readonly<Array<byte>>): Array<byte> {
     const ver: int = this.version
-    const ecl: QrCodeEcc = this.errorCorrectionLevel
+    const ecl: QrCodeEcc = this.ecc
     if (data.length !== getNumDataCodewords(ver, ecl))
       throw new RangeError('Invalid argument')
 
@@ -880,9 +876,7 @@ export function encodeSegments(
     appendBits(padByte, 8, bb)
 
   // Pack bits into bytes in big endian
-  const dataCodewords: Array<byte> = []
-  while (dataCodewords.length * 8 < bb.length)
-    dataCodewords.push(0)
+  const dataCodewords = Array.from({ length: Math.ceil(bb.length / 8) }, () => 0 as byte)
   bb.forEach((b: bit, i: int) =>
     dataCodewords[i >>> 3] |= b << (7 - (i & 7)))
 
