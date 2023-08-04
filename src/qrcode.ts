@@ -600,29 +600,25 @@ export class QrSegment {
 /*
   * Describes how a segment's data bits are interpreted. Immutable.
   */
-export class QrSegmentMode {
-  /* -- Constants -- */
-  public static readonly NUMERIC = new QrSegmentMode(0x1, [10, 12, 14])
-  public static readonly ALPHANUMERIC = new QrSegmentMode(0x2, [9, 11, 13])
-  public static readonly BYTE = new QrSegmentMode(0x4, [8, 16, 16])
-  public static readonly KANJI = new QrSegmentMode(0x8, [8, 10, 12])
-  public static readonly ECI = new QrSegmentMode(0x7, [0, 0, 0])
+export type QrSegmentMode = [
+  // The mode indicator bits, which is a uint4 value (range 0 to 15).
+  modeBits: int,
+  // Number of character count bits for three different version ranges.
+  numBitsCharCount1: int,
+  numBitsCharCount2: int,
+  numBitsCharCount3: int,
+]
 
-  /* -- Constructor and fields -- */
+const MODE_NUMERIC: QrSegmentMode = [0x1, 10, 12, 14]
+const MODE_ALPHANUMERIC: QrSegmentMode = [0x2, 9, 11, 13]
+const MODE_BYTE: QrSegmentMode = [0x4, 8, 16, 16]
+// const MODE_KANJI: QrSegmentMode = { modeBits: 0x8, numBitsCharCount: [8, 10, 12] }
+// const MODE_ECI: QrSegmentMode = { modeBits: 0x7, numBitsCharCount: [0, 0, 0] }
 
-  private constructor(
-    // The mode indicator bits, which is a uint4 value (range 0 to 15).
-    public readonly modeBits: int,
-    // Number of character count bits for three different version ranges.
-    private readonly numBitsCharCount: [int, int, int]) { }
-
-  /* -- Method -- */
-
-  // (Package-private) Returns the bit width of the character count field for a segment in
-  // this mode in a QR Code at the given version number. The result is in the range [0, 16].
-  public numCharCountBits(ver: int): int {
-    return this.numBitsCharCount[Math.floor((ver + 7) / 17)]
-  }
+// (Package-private) Returns the bit width of the character count field for a segment in
+// this mode in a QR Code at the given version number. The result is in the range [0, 16].
+function numCharCountBits(mode: QrSegmentMode, ver: int): int {
+  return mode[Math.floor((ver + 7) / 17) + 1]
 }
 
 // Returns a QR Code representing the given Unicode text string at the given error correction level.
@@ -651,7 +647,7 @@ export function makeBytes(data: Readonly<Array<byte>>): QrSegment {
   const bb: Array<bit> = []
   for (const b of data)
     appendBits(b, 8, bb)
-  return new QrSegment(QrSegmentMode.BYTE, data.length, bb)
+  return new QrSegment(MODE_BYTE, data.length, bb)
 }
 
 // Returns a segment representing the given string of decimal digits encoded in numeric mode.
@@ -664,7 +660,7 @@ function makeNumeric(digits: string): QrSegment {
     appendBits(Number.parseInt(digits.substring(i, i + n), 10), n * 3 + 1, bb)
     i += n
   }
-  return new QrSegment(QrSegmentMode.NUMERIC, digits.length, bb)
+  return new QrSegment(MODE_NUMERIC, digits.length, bb)
 }
 
 // Returns a segment representing the given text string encoded in alphanumeric mode.
@@ -682,7 +678,7 @@ function makeAlphanumeric(text: string): QrSegment {
   }
   if (i < text.length) // 1 character remaining
     appendBits(ALPHANUMERIC_CHARSET.indexOf(text.charAt(i)), 6, bb)
-  return new QrSegment(QrSegmentMode.ALPHANUMERIC, text.length, bb)
+  return new QrSegment(MODE_ALPHANUMERIC, text.length, bb)
 }
 
 // Returns a new mutable list of zero or more segments to represent the given Unicode text string.
@@ -717,7 +713,7 @@ function isAlphanumeric(text: string): boolean {
 function getTotalBits(segs: Readonly<Array<QrSegment>>, version: int): number {
   let result: number = 0
   for (const seg of segs) {
-    const ccbits: int = seg.mode.numCharCountBits(version)
+    const ccbits: int = numCharCountBits(seg.mode, version)
     if (seg.numChars >= (1 << ccbits))
       return Number.POSITIVE_INFINITY // The segment's length doesn't fit the field's bit width
     result += 4 + ccbits + seg.bitData.length
@@ -865,8 +861,8 @@ export function encodeSegments(
   // Concatenate all segments to create the data bit string
   const bb: Array<bit> = []
   for (const seg of segs) {
-    appendBits(seg.mode.modeBits, 4, bb)
-    appendBits(seg.numChars, seg.mode.numCharCountBits(version), bb)
+    appendBits(seg.mode[0], 4, bb)
+    appendBits(seg.numChars, numCharCountBits(seg.mode, version), bb)
     for (const b of seg.getData())
       bb.push(b)
   }
