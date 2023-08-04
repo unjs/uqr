@@ -1,5 +1,5 @@
 export {
-  encode as generateRaw,
+  encode,
 } from './generate'
 export {
   renderUnicode,
