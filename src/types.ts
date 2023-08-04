@@ -68,6 +68,10 @@ export interface QrCodeGenerateResult {
    */
   size: number
   /**
+   * Mask pattern used
+   */
+  maskPattern: number
+  /**
    * Two dimensional array representing the QR Code
    *
    * `true` for black, `false` for white

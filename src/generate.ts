@@ -31,6 +31,7 @@ export function encode(data: QrCodeGenerateData, options?: QrCodeGenerateOptions
 
   const result = addBorder({
     version: qr.version,
+    maskPattern: qr.mask,
     size: qr.size,
     data: qr.modules,
     types: qr.types,
