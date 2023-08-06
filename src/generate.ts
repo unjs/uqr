@@ -40,6 +40,8 @@ export function encode(data: QrCodeGenerateData, options?: QrCodeGenerateOptions
   if (options?.invert)
     result.data = result.data.map(row => row.map(mod => !mod))
 
+  options?.onEncoded?.(result)
+
   return result
 }
 

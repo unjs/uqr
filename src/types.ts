@@ -47,6 +47,11 @@ export interface QrCodeGenerateOptions {
    * Invert black and white
    */
   invert?: boolean
+
+  /**
+   * Callback function to receive the generated QR Code
+   */
+  onEncoded?: (qr: QrCodeGenerateResult) => void
 }
 
 export enum QrCodeDataType {
