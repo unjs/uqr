@@ -49,7 +49,7 @@ function addBorder(input: QrCodeGenerateResult, border = 1): QrCodeGenerateResul
   if (!border)
     return input
 
-  const { size, data } = input
+  const { size } = input
   const newSize = size + border * 2
 
   input.size = newSize

@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
-import { renderANSI, renderUnicode, renderUnicodeCompact } from '../src'
+import fs from 'node:fs'
+import { renderANSI, renderSVG, renderUnicode, renderUnicodeCompact } from '../src'
 
 const text = 'qrcode'
 
@@ -11,3 +12,5 @@ console.log()
 
 console.log(renderUnicodeCompact(text))
 console.log()
+
+fs.writeFileSync('./play/out.svg', renderSVG(text), 'utf8')
