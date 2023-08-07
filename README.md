@@ -1,8 +1,14 @@
 # uqr
 
-[![NPM version](https://img.shields.io/npm/v/uqr?color=a1b858&label=)](https://www.npmjs.com/package/uqr)
+[![npm version][npm-version-src]][npm-version-href]
+[![npm downloads][npm-downloads-src]][npm-downloads-href]
+[![bundle][bundle-src]][bundle-href]
+[![License][license-src]][license-href]
+[![JSDocs][jsdocs-src]][jsdocs-href]
 
-Generate QR Code universally, in any runtime, to ANSI, Unicode or SVG.
+<!-- [![Codecov][codecov-src]][codecov-href] -->
+
+Generate QR Code universally, in any runtime, to ANSI, Unicode or SVG. ES module , zero dependency, tree-shakable.
 
 ## Install
 
@@ -114,3 +120,19 @@ CLI renders are inspired by [qrcode-terminal](https://github.com/gtanner/qrcode-
 ## License
 
 [MIT](./LICENSE) License
+
+
+<!-- Badges -->
+
+[npm-version-src]: https://img.shields.io/npm/v/uqr?style=flat&colorA=18181B&colorB=F0DB4F
+[npm-version-href]: https://npmjs.com/package/uqr
+[npm-downloads-src]: https://img.shields.io/npm/dm/uqr?style=flat&colorA=18181B&colorB=F0DB4F
+[npm-downloads-href]: https://npmjs.com/package/uqr
+[codecov-src]: https://img.shields.io/codecov/c/gh/unjs/uqr/main?style=flat&colorA=18181B&colorB=F0DB4F
+[codecov-href]: https://codecov.io/gh/unjs/uqr
+[bundle-src]: https://img.shields.io/bundlephobia/minzip/uqr?style=flat&colorA=18181B&colorB=F0DB4F
+[bundle-href]: https://bundlephobia.com/result?p=uqr
+[license-src]: https://img.shields.io/github/license/unjs/uqr.svg?style=flat&colorA=18181B&colorB=F0DB4F
+[license-href]: https://github.com/unjs/uqr/blob/main/LICENSE
+[jsdocs-src]: https://img.shields.io/badge/jsDocs.io-reference-18181B?style=flat&colorA=18181B&colorB=F0DB4F
+[jsdocs-href]: https://www.jsdocs.io/package/uqr
