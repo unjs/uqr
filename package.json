@@ -1,7 +1,7 @@
 {
   "name": "uqr",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "packageManager": "pnpm@8.6.12",
   "description": "Generate QR Code universally, in any runtime, to ANSI, Unicode or SVG.",
   "author": "Anthony Fu <anthonyfu117@hotmail.com>",
