@@ -18,7 +18,12 @@ export function encode(data: QrCodeGenerateData, options?: QrCodeGenerateOptions
 
   const segment = typeof data === 'string'
     ? makeSegments(data)
-    : [makeBytes(data)]
+    : Array.isArray(data)
+      ? [makeBytes(data)]
+      : undefined
+
+  if (!segment)
+    throw new Error(`uqr only supports encoding string and binary data, but got: ${typeof data}`)
 
   const qr = encodeSegments(
     segment,

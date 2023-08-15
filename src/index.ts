@@ -1,6 +1,6 @@
 export {
   encode,
-} from './generate'
+} from './encode'
 export {
   renderUnicode,
   renderANSI,

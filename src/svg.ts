@@ -1,4 +1,4 @@
-import { encode } from './generate'
+import { encode } from './encode'
 import type { QrCodeGenerateData, QrCodeGenerateSvgOptions } from './types'
 
 /**

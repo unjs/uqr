@@ -1,5 +1,5 @@
 import type { QrCodeGenerateData, QrCodeGenerateOptions, QrCodeGenerateUnicodeOptions } from './types'
-import { encode, getDataAt } from './generate'
+import { encode, getDataAt } from './encode'
 
 /**
  * Render QR Code with unicode `█`, `░`
