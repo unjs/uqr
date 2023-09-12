@@ -2,7 +2,7 @@ import { encode } from './encode'
 import type { QrCodeGenerateData, QrCodeGenerateSvgOptions } from './types'
 
 /**
- * Render QR Code with ANSI color for terminal
+ * Render QR Code as SVG string
  */
 export function renderSVG(
   data: QrCodeGenerateData,
