@@ -110,7 +110,7 @@ export interface QrCodeGenerateSvgOptions extends QrCodeGenerateOptions {
   /**
    * Size of each pixel
    *
-   * @default 20
+   * @default 10
    */
   pixelSize?: number
 
