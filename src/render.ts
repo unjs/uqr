@@ -49,7 +49,7 @@ export function renderUnicodeCompact(
   data: QrCodeGenerateData,
   options: QrCodeGenerateOptions = {},
 ) {
-  const platte = {
+  const palette = {
     WHITE_ALL: '\u2588',
     WHITE_BLACK: '\u2580',
     BLACK_WHITE: '\u2584',
@@ -67,13 +67,13 @@ export function renderUnicodeCompact(
   for (let row = 0; row < result.size; row += 2) {
     for (let col = 0; col < result.size; col++) {
       if (at(col, row) === WHITE && at(col, row + 1) === WHITE)
-        line += platte.WHITE_ALL
+        line += palette.WHITE_ALL
       else if (at(col, row) === WHITE && at(col, row + 1) === BLACK)
-        line += platte.WHITE_BLACK
+        line += palette.WHITE_BLACK
       else if (at(col, row) === BLACK && at(col, row + 1) === WHITE)
-        line += platte.BLACK_WHITE
+        line += palette.BLACK_WHITE
       else
-        line += platte.BLACK_ALL
+        line += palette.BLACK_ALL
     }
     lines.push(line)
     line = ''
