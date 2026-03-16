@@ -111,6 +111,10 @@ import { renderSVG } from 'uqr'
 const string = renderSVG(text, options)
 ```
 
+## Alternatives
+
+- [etiket](https://github.com/productdevbook/etiket) — Zero-dependency barcode & QR code SVG generator. 20+ formats (1D barcodes, QR, Data Matrix, PDF417, Aztec), styled QR codes with dot types/gradients/logos, tree-shakeable, CLI tool.
+
 ## Credits
 
 QR Code generation algorithm is modified from [nayuki/QR-Code-generator](https://github.com/nayuki/QR-Code-generator/blob/master/typescript-javascript/qrcodegen.ts) by Project Nayuki.
