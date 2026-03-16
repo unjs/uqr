@@ -114,8 +114,6 @@ const string = renderSVG(text, options)
 ## Alternatives
 
 - [etiket](https://github.com/productdevbook/etiket) — Zero-dependency barcode & QR code SVG generator. 20+ formats (1D barcodes, QR, Data Matrix, PDF417, Aztec), styled QR codes with dot types/gradients/logos, tree-shakeable, CLI tool.
-- [qrcode](https://www.npmjs.com/package/qrcode) — QR code generator with PNG/Canvas/terminal output.
-- [qr-code-styling](https://github.com/kozakdenys/qr-code-styling) — QR code styling with dot shapes, gradients, logos. PNG/SVG output.
 
 ## Credits
 
