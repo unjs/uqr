@@ -2,6 +2,18 @@ import { encode } from './encode'
 import type { QrCodeGenerateData, QrCodeGenerateSvgOptions } from './types'
 
 /**
+ * Escape special XML characters to prevent injection.
+ */
+function escapeXml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;')
+}
+
+/**
  * Renders a QR code as an SVG string.
  * The function converts the input data into a QR code and then generates an SVG representation using the specified colours and pixel sizes.
  * @param {QrCodeGenerateData} data - The data to encode into the QR code. See {@link QrCodeGenerateData}.
@@ -21,6 +33,9 @@ export function renderSVG(
   const height = result.size * pixelSize
   const width = result.size * pixelSize
 
+  const escapedWhite = escapeXml(whiteColor)
+  const escapedBlack = escapeXml(blackColor)
+
   let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}">`
 
   const pathes: string[] = []
@@ -34,8 +49,8 @@ export function renderSVG(
     }
   }
 
-  svg += `<rect fill="${whiteColor}" width="${width}" height="${height}"/>`
-  svg += `<path fill="${blackColor}" d="${pathes.join('')}"/>`
+  svg += `<rect fill="${escapedWhite}" width="${width}" height="${height}"/>`
+  svg += `<path fill="${escapedBlack}" d="${pathes.join('')}"/>`
 
   svg += '</svg>'
   return svg
