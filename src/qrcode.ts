@@ -140,7 +140,7 @@ export class QrCode {
     this.size = version * 4 + 17
 
     // Initialize both grids to be size*size arrays of Boolean false
-    const row = Array.from({ length: this.size }).fill(false)
+    const row = Array.from<boolean>({ length: this.size }).fill(false)
     for (let i = 0; i < this.size; i++) {
       this.modules.push(row.slice()) // Initially all light
       this.types.push(row.map(() => 0))
