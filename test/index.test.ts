@@ -134,6 +134,33 @@ describe('should', () => {
 
   it('render-svg', () => {
     const svg = renderSVG('qrcode')
+    expect(svg.startsWith('<svg')).toBe(true)
+    expect(svg.endsWith('</svg>')).toBe(true)
     expect(svg).toMatchFileSnapshot('./output/out1.svg')
+  })
+
+  it('render-svg-custom-colors', () => {
+    const svg = renderSVG('test', {
+      whiteColor: '#E4D156',
+      blackColor: '#333',
+    })
+
+    expect(svg).toContain('fill="#E4D156"')
+    expect(svg).toContain('fill="#333"')
+  })
+
+  it('render-svg-custom-pixel-size', () => {
+    const svg = renderSVG('test', { pixelSize: 5 })
+    expect(svg).toContain('h5v5h-5z')
+  })
+
+  it('render-svg-escapes-color-attrs', () => {
+    const svg = renderSVG('test', {
+      whiteColor: '"><script>alert(1)</script>',
+      blackColor: 'red',
+    })
+
+    expect(svg).not.toContain('<script>')
+    expect(svg).toContain('&quot;&gt;&lt;script&gt;')
   })
 })
