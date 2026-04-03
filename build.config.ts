@@ -1,5 +1,5 @@
-import { defineBuildConfig } from 'unbuild'
 import type { Plugin } from 'rollup'
+import { defineBuildConfig } from 'unbuild'
 
 export default defineBuildConfig({
   entries: [

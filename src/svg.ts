@@ -1,5 +1,5 @@
-import { encode } from './encode'
 import type { QrCodeGenerateData, QrCodeGenerateSvgOptions } from './types'
+import { encode } from './encode'
 
 /**
  * Escapes special characters in a string for use in XML attributes.
@@ -19,7 +19,7 @@ function escapeAttr(value: string): string {
  * Renders a QR code as an SVG string.
  * The function converts the input data into a QR code and then generates an SVG representation using the specified colours and pixel sizes.
  * @param {QrCodeGenerateData} data - The data to encode into the QR code. See {@link QrCodeGenerateData}.
- * @param {QrCodeGenerateSvgOptions} [options={}] - Options to render the QR code in SVG format, including pixel size and colours for modules. optional. See {@link QrCodeGenerateSvgOptions}.
+ * @param {QrCodeGenerateSvgOptions} [options] - Options to render the QR code in SVG format, including pixel size and colours for modules. optional. See {@link QrCodeGenerateSvgOptions}.
  * @returns {string} An SVG string representing the QR code.
  */
 export function renderSVG(

@@ -132,8 +132,6 @@ CLI renders are inspired by [qrcode-terminal](https://github.com/gtanner/qrcode-
 [npm-version-href]: https://npmjs.com/package/uqr
 [npm-downloads-src]: https://img.shields.io/npm/dm/uqr?style=flat&colorA=18181B&colorB=F0DB4F
 [npm-downloads-href]: https://npmjs.com/package/uqr
-[codecov-src]: https://img.shields.io/codecov/c/gh/unjs/uqr/main?style=flat&colorA=18181B&colorB=F0DB4F
-[codecov-href]: https://codecov.io/gh/unjs/uqr
 [bundle-src]: https://img.shields.io/bundlephobia/minzip/uqr?style=flat&colorA=18181B&colorB=F0DB4F
 [bundle-href]: https://bundlephobia.com/result?p=uqr
 [license-src]: https://img.shields.io/github/license/unjs/uqr.svg?style=flat&colorA=18181B&colorB=F0DB4F

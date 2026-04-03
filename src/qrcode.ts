@@ -45,10 +45,10 @@ export const EccMap = {
 }
 
 // Describes precisely all strings that are encodable in numeric mode.
-const NUMERIC_REGEX = /^[0-9]*$/
+const NUMERIC_REGEX = /^\d*$/
 
 // Describes precisely all strings that are encodable in alphanumeric mode.
-const ALPHANUMERIC_REGEX = /^[A-Z0-9 $%*+.\/:-]*$/
+const ALPHANUMERIC_REGEX = /^[A-Z0-9 $%*+./:-]*$/
 
 // The set of all legal characters in alphanumeric mode,
 // where each character value maps to the index in the string.
@@ -140,7 +140,7 @@ export class QrCode {
     this.size = version * 4 + 17
 
     // Initialize both grids to be size*size arrays of Boolean false
-    const row = Array.from({ length: this.size }, () => false)
+    const row = Array.from({ length: this.size }).fill(false)
     for (let i = 0; i < this.size; i++) {
       this.modules.push(row.slice()) // Initially all light
       this.types.push(row.map(() => 0))
@@ -203,8 +203,8 @@ export class QrCode {
     for (let i = 0; i < numAlign; i++) {
       for (let j = 0; j < numAlign; j++) {
         // Don't draw on the three finder corners
-        // eslint-disable-next-line no-mixed-operators
-        if (!(i === 0 && j === 0 || i === 0 && j === numAlign - 1 || i === numAlign - 1 && j === 0))
+
+        if (!((i === 0 && j === 0) || (i === 0 && j === numAlign - 1) || (i === numAlign - 1 && j === 0)))
           this.drawAlignmentPattern(alignPatPos[i], alignPatPos[j])
       }
     }
@@ -464,8 +464,9 @@ export class QrCode {
         const color: boolean = this.modules[y][x]
         if (color === this.modules[y][x + 1]
           && color === this.modules[y + 1][x]
-          && color === this.modules[y + 1][x + 1])
+          && color === this.modules[y + 1][x + 1]) {
           result += PENALTY_N2
+        }
       }
     }
 
@@ -755,8 +756,8 @@ function getNumRawDataModules(ver: int): int {
 // This stateless pure function could be implemented as a (40*4)-cell lookup table.
 function getNumDataCodewords(ver: int, ecl: QrCodeEcc): int {
   return Math.floor(getNumRawDataModules(ver) / 8)
-      - ECC_CODEWORDS_PER_BLOCK[ecl[0]][ver]
-      * NUM_ERROR_CORRECTION_BLOCKS[ecl[0]][ver]
+    - ECC_CODEWORDS_PER_BLOCK[ecl[0]][ver]
+    * NUM_ERROR_CORRECTION_BLOCKS[ecl[0]][ver]
 }
 
 // Returns a Reed-Solomon ECC generator polynomial for the given degree. This could be
@@ -831,8 +832,9 @@ export function encodeSegments(
   boostEcl: boolean = true,
 ): QrCode {
   if (!(MIN_VERSION <= minVersion && minVersion <= maxVersion && maxVersion <= MAX_VERSION)
-      || mask < -1 || mask > 7)
+    || mask < -1 || mask > 7) {
     throw new RangeError('Invalid value')
+  }
 
   // Find the minimal version number to use
   let version: int

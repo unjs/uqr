@@ -4,7 +4,7 @@ import { encode, getDataAt } from './encode'
 /**
  * Renders a QR code as a string using the specified Unicode characters for dark(`█`) and light(`░`) modules.
  * @param {QrCodeGenerateData} data - The data to encode into the QR code. See {@link QrCodeGenerateData}.
- * @param {QrCodeGenerateUnicodeOptions} [options={}] - Rendering options, including characters for white and black modules. optional. See {@link QrCodeGenerateUnicodeOptions}.
+ * @param {QrCodeGenerateUnicodeOptions} [options] - Rendering options, including characters for white and black modules. optional. See {@link QrCodeGenerateUnicodeOptions}.
  * Returns {string} A string representing the QR code, with each module replaced by the specified Unicode character.
  */
 export function renderUnicode(
@@ -25,7 +25,7 @@ export function renderUnicode(
 /**
  * Renders a QR code as a string suitable for display on terminals using ANSI background colours.
  * @param {QrCodeGenerateData} data - The data to encode into the QR code. See {@link QrCodeGenerateData}.
- * @param {QrCodeGenerateOptions} [options={}] - Options to render the QR code. optional. See {@link QrCodeGenerateOptions}.
+ * @param {QrCodeGenerateOptions} [options] - Options to render the QR code. optional. See {@link QrCodeGenerateOptions}.
  * @returns {string} A string representing the QR code using ANSI colours, formatted for terminal display.
  */
 export function renderANSI(
@@ -42,7 +42,7 @@ export function renderANSI(
 /**
  * Renders a QR code as a compact string using a combination of top half block(`▀`), bottom half block(`▄`), full block(`█`) and spaces to represent two lines in a single line.
  * @param {QrCodeGenerateData} data - The data to encode into the QR code. See {@link QrCodeGenerateData}.
- * @param {QrCodeGenerateOptions} [options={}] - Options to render the QR code in a compact form. optional. See {@link QrCodeGenerateOptions}.
+ * @param {QrCodeGenerateOptions} [options] - Options to render the QR code in a compact form. optional. See {@link QrCodeGenerateOptions}.
  * @returns {string} A string representing the QR code in a compact format, using Unicode block characters to combine two lines per line.
  */
 export function renderUnicodeCompact(

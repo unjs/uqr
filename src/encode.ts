@@ -1,10 +1,11 @@
+import type { QrCodeGenerateData, QrCodeGenerateOptions, QrCodeGenerateResult } from './types'
 import {
   EccMap,
   encodeSegments,
   makeBytes,
   makeSegments,
 } from './qrcode'
-import { QrCodeDataType, type QrCodeGenerateData, type QrCodeGenerateOptions, type QrCodeGenerateResult } from './types'
+import { QrCodeDataType } from './types'
 
 /**
  * Encodes the given data into a QR code format according to the given options.
@@ -96,7 +97,7 @@ function addBorder(input: QrCodeGenerateResult, border = 1): QrCodeGenerateResul
  * @param {boolean[][]} data - The QR code data matrix.
  * @param {number} x - The x coordinate (column index) within the matrix.
  * @param {number} y - The y coordinate (row index) within the matrix.
- * @param {boolean} [defaults=false] - The default value to return if the coordinates are out of bounds. Optional.
+ * @param {boolean} [defaults] - The default value to return if the coordinates are out of bounds. Optional.
  * @returns {boolean} The data value at the given coordinate or the default value if out of bounds.
  */
 export function getDataAt(data: boolean[][], x: number, y: number, defaults = false) {

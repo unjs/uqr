@@ -2,8 +2,8 @@ export {
   encode,
 } from './encode'
 export {
-  renderUnicode,
   renderANSI,
+  renderUnicode,
   renderUnicodeCompact,
 } from './render'
 export {

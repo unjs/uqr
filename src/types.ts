@@ -1,9 +1,9 @@
 /**
  * String or binary
  */
-export type QrCodeGenerateData =
-  | string
-  | Readonly<Array<number>>
+export type QrCodeGenerateData
+  = | string
+    | Readonly<Array<number>>
 
 export interface QrCodeGenerateOptions {
   /**

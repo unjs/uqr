@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { renderUnicode, renderUnicodeCompact } from '../src/render'
 import { encode, renderSVG } from '../src'
+import { renderUnicode, renderUnicodeCompact } from '../src/render'
 
 describe('should', () => {
   it('generate', () => {
